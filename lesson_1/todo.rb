@@ -115,15 +115,15 @@ class TodoList
       yield(todos[counter])
       counter += 1
     end
-    todos
+    self
   end
 
   def select
-    result = []
+    list = TodoList.new(title)
     each do |todo|
-      result << todo if yield(todo)
+      list.add(todo) if yield(todo)
     end
-    result
+    list
   end
 end
 
@@ -144,9 +144,7 @@ list.add(todo3)                 # adds todo3 to end of list, returns list
 # <<
 # same behavior as add
 
-list.each do |todo|
-  puts todo
-end
+list.each { |todo| puts todo }
 
 todo1.done!
 
