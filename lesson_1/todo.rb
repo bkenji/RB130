@@ -117,6 +117,14 @@ class TodoList
     end
     todos
   end
+
+  def select
+    result = []
+    each do |todo|
+      result << todo if yield(todo)
+    end
+    result
+  end
 end
 
 # given
@@ -139,6 +147,12 @@ list.add(todo3)                 # adds todo3 to end of list, returns list
 list.each do |todo|
   puts todo
 end
+
+todo1.done!
+
+results = list.select { |todo| todo.done? }    # you need to implement this method
+
+puts results.inspect
 
 # ---- Interrogating the list -----
 
