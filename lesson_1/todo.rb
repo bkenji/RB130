@@ -125,6 +125,42 @@ class TodoList
     end
     list
   end
+
+  def find_by_title(title)
+    select do |todo|
+      todo.title == title
+    end.first
+  end
+
+  def all_done
+    select do |todo|
+      todo.done?
+    end
+  end
+
+  def all_not_done
+    select do |todo|
+      !todo.done?
+    end
+  end
+
+  def mark_done(title)
+    each do |todo|
+      todo.done! if todo.title == title
+    end
+  end
+
+  def mark_all_done
+    each do |todo|
+      todo.done!
+    end
+  end
+
+  def mark_all_undone
+    each do |todo|
+      todo.undone!
+    end
+  end
 end
 
 # given
@@ -141,16 +177,24 @@ list.add(todo2)                 # adds todo2 to end of list, returns list
 list.add(todo3)                 # adds todo3 to end of list, returns list
 # list.add(1)                     # raises TypeError with message "Can only add Todo objects"
 
+p list.all_done
+list.mark_done("Buy milk")
+p list.all_done
+list.mark_all_done
+p list.all_done
+list.mark_all_undone
+p list.all_done
+
 # <<
 # same behavior as add
 
-list.each { |todo| puts todo }
+# list.each { |todo| puts todo }
 
-todo1.done!
+# todo1.done!
 
-results = list.select { |todo| todo.done? }    # you need to implement this method
+# results = list.select { |todo| todo.done? }    # you need to implement this method
 
-puts results.inspect
+# puts results.inspect
 
 # ---- Interrogating the list -----
 
