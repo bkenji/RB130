@@ -1,8 +1,10 @@
-require "minitest/autorun"
-require "minitest/reporters"
-Minitest::Reporters.use!
+require "simplecov"
+SimpleCov.start 
 
-require_relative "../../lesson_1/todo.rb"
+require "minitest/autorun"
+
+
+require_relative "../todo.rb"
 
 class TodoListTest < MiniTest::Test
   def setup
