@@ -17,8 +17,6 @@
 # - if 2 sides are of same length, return "isosceles"
 # - Otherwise, return "scalene"
 
-
-
 # SPIKE: 
 
 class Triangle
